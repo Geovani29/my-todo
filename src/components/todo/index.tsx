@@ -1,40 +1,52 @@
 import { useState } from "react";
 import { useTodo } from "./useTodo";
-import type { TodoType } from "./types";
 import TodoItem from "./todo-item";
 import { Button, Input } from "./styled";
 
 function Todo() {
     const [todo, setTodo] = useState("");
-    const { todos, addTodo, removeTodo } = useTodo();
+    const { todos, isLoading, addTodo, removeTodo } = useTodo();
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setTodo(event.target.value);
 
     const onClick = () => {
-        const now = new Date().toISOString();
-        const value: TodoType = {
-                        id: now,
-                        content: todo,
-                        done: false,
-                        createdAt: now,
-                        updatedAt: now
-                    };
-        addTodo(value)
-        setTodo("");
+        if (todo.trim()) {
+            addTodo(todo.trim());
+            setTodo("");
+        }
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
 
     return (
         <>
             <h1>To do list</h1>
-            <form>
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                onClick();
+            }}>
                 <div>
-                    <Input type="text" name="todo" value={todo} onChange={onChange} />
-                    <Button type="button" onClick={onClick}>Add</Button>
+                    <Input 
+                        type="text" 
+                        name="todo" 
+                        value={todo} 
+                        onChange={onChange}
+                        placeholder="Enter a new task"
+                    />
+                    <Button type="submit">Add</Button>
                 </div>
             </form>
 
             <ul>
-                {todos.map((todo) => <TodoItem key={todo.createdAt} todo={todo} removeTodo={removeTodo} />)}
+                {todos.map((todo) => (
+                    <TodoItem 
+                        key={todo.id} 
+                        todo={todo} 
+                        removeTodo={removeTodo} 
+                    />
+                ))}
             </ul>
         </>
     )
