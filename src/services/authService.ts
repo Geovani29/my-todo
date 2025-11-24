@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_TOKEN } from '../config/api';
+import { captureError, addBreadcrumb } from '../config/sentry';
 
 const AUTH_BASE_URL = `https://roble-api.openlab.uninorte.edu.co/auth/${API_TOKEN}`;
 
@@ -14,6 +15,7 @@ export const authService = {
             return response.data;
         } catch (error) {
             console.error('Error in signup:', error);
+            captureError(error as Error, { context: 'signup', email });
             throw error;
         }
     },
@@ -27,10 +29,11 @@ export const authService = {
             // Guardar el token en localStorage
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-            
+
             return response.data;
         } catch (error) {
             console.error('Error in login:', error);
+            captureError(error as Error, { context: 'login', email });
             throw error;
         }
     },
@@ -49,6 +52,7 @@ export const authService = {
             return response.data.accessToken;
         } catch (error) {
             console.error('Error refreshing token:', error);
+            captureError(error as Error, { context: 'refreshToken' });
             throw error;
         }
     },
@@ -72,6 +76,7 @@ export const authService = {
             }
         } catch (error) {
             console.error('Error in logout:', error);
+            captureError(error as Error, { context: 'logout' });
         } finally {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
