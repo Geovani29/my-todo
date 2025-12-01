@@ -6,7 +6,7 @@ export const initSentry = () => {
 
     // Solo inicializar si hay DSN configurado
     if (!dsn) {
-        console.warn('⚠️ Sentry DSN no configurado. Error tracking deshabilitado.');
+        console.warn('Sentry DSN no configurado. Error tracking deshabilitado.');
         return;
     }
 
