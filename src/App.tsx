@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Container, Button } from 'react-bootstrap';
 import Todo from './components/todo';
 import { Login } from './components/auth/Login';
 import { authService } from './services/authService';
-import './App.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,18 +21,20 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center position-relative" style={{ background: 'linear-gradient(135deg, #10002B 0%, #240046 25%, #3C096C 50%, #5A189A 75%, #7B2CBF 100%)', backgroundAttachment: 'fixed' }}>
       {isAuthenticated ? (
         <>
-          <button 
+          <Button 
             onClick={handleLogout}
-            className="logout-button"
+            variant="light"
+            className="position-fixed top-0 end-0 m-3"
+            style={{ zIndex: 1000, backgroundColor: 'rgba(255, 255, 255, 0.95)', border: '2px solid #9D4EDD' }}
           >
             Cerrar sesión
-          </button>
-          <div className="todo-container">
+          </Button>
+          <Container className="py-5">
             <Todo />
-          </div>
+          </Container>
         </>
       ) : (
         <Login onLoginSuccess={handleLoginSuccess} />
