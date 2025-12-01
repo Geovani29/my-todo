@@ -71,7 +71,7 @@ class ErrorBoundary extends Component<Props, State> {
                         }}
                     >
                         <h1 style={{ color: '#e74c3c', marginBottom: '20px' }}>
-                            ⚠️ Algo salió mal
+                            Algo salió mal
                         </h1>
                         <p style={{ color: '#666', marginBottom: '20px' }}>
                             Lo sentimos, ha ocurrido un error inesperado. El error ha sido

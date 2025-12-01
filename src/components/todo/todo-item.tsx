@@ -28,7 +28,7 @@ const TodoItem = ({ todo, removeTodo }: { todo: TodoType, removeTodo: (id: strin
                 className="px-3 py-2"
                 style={{ minWidth: '110px', fontSize: '0.8rem', fontWeight: '600' }}
             >
-                {todo.done ? "✓ Completado" : "⏳ Pendiente"}
+                {todo.done ? "Completado" : "Pendiente"}
             </Badge>
             
             <div className="flex-grow-1">
@@ -49,7 +49,7 @@ const TodoItem = ({ todo, removeTodo }: { todo: TodoType, removeTodo: (id: strin
                 onClick={handleDelete}
                 className="ms-auto"
             >
-                🗑️ Eliminar
+                Eliminar
             </Button>
         </ListGroupItem>
     );

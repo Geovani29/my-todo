@@ -6,7 +6,7 @@ export const initAnalytics = () => {
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
     if (!measurementId) {
-        console.warn('⚠️ Google Analytics Measurement ID no configurado. Analytics deshabilitado.');
+        console.warn('Google Analytics Measurement ID no configurado. Analytics deshabilitado.');
         return;
     }
 
@@ -17,7 +17,7 @@ export const initAnalytics = () => {
     });
 
     isInitialized = true;
-    console.log('✅ Google Analytics inicializado');
+    console.log('Google Analytics inicializado');
 };
 
 // Track page views

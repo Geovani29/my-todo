@@ -2,7 +2,7 @@
 const getEnvVar = (key: string, defaultValue?: string): string => {
     const value = import.meta.env[key];
     if (!value && !defaultValue) {
-        console.warn(`⚠️ Variable de entorno ${key} no está definida`);
+        console.warn(`Variable de entorno ${key} no está definida`);
     }
     return value || defaultValue || '';
 };
