@@ -1,8 +1,8 @@
-# My Todo App 📝
+# My Todo App
 
 Una aplicación moderna de gestión de tareas construida con React, TypeScript y Vite, con autenticación de usuarios y monitoreo en tiempo real.
 
-## 🚀 Features
+## Features
 
 - ✅ Autenticación de usuarios (Login/Signup)
 - ✅ CRUD completo de tareas
@@ -12,7 +12,7 @@ Una aplicación moderna de gestión de tareas construida con React, TypeScript y
 - ✅ Deploy automático con GitHub Actions
 - ✅ Hosting en Firebase
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 19 + TypeScript
 - **Build Tool**: Vite
@@ -24,7 +24,7 @@ Una aplicación moderna de gestión de tareas construida con React, TypeScript y
 - **Hosting**: Firebase Hosting
 - **CI/CD**: GitHub Actions
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Clonar el repositorio
