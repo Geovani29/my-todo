@@ -17,7 +17,12 @@ function Todo() {
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="loading-container">
+                <div className="loading-spinner"></div>
+                <span>Cargando...</span>
+            </div>
+        );
     }
 
     return (
@@ -27,7 +32,7 @@ function Todo() {
                 e.preventDefault();
                 onClick();
             }}>
-                <div>
+                <div style={{ display: 'flex', marginBottom: '2rem' }}>
                     <Input 
                         type="text" 
                         name="todo" 
@@ -39,7 +44,7 @@ function Todo() {
                 </div>
             </form>
 
-            <ul>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {todos.map((todo) => (
                     <TodoItem 
                         key={todo.id} 

@@ -21,17 +21,19 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-container">
       {isAuthenticated ? (
-        <div>
+        <>
           <button 
             onClick={handleLogout}
-            style={{ position: 'absolute', top: '10px', right: '10px' }}
+            className="logout-button"
           >
             Cerrar sesión
           </button>
-          <Todo />
-        </div>
+          <div className="todo-container">
+            <Todo />
+          </div>
+        </>
       ) : (
         <Login onLoginSuccess={handleLoginSuccess} />
       )}

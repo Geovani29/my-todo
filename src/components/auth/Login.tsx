@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { authService } from '../../services/authService';
 import { Button, Input } from '../todo/styled';
+import './Login.css';
 
 interface LoginProps {
     onLoginSuccess: () => void;
@@ -20,7 +21,6 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
         try {
             if (isSigningUp) {
                 await authService.signUp(email, password, name);
-                // Después de registrar, hacemos login automáticamente
                 await authService.login(email, password);
             } else {
                 await authService.login(email, password);
@@ -32,12 +32,12 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
     };
 
     return (
-        <div style={{ maxWidth: '300px', margin: '0 auto', padding: '20px' }}>
+        <div className="login-container">
             <h2>{isSigningUp ? 'Registro' : 'Iniciar Sesión'}</h2>
-            {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
-            <form onSubmit={handleSubmit}>
+            {error && <div className="login-error">{error}</div>}
+            <form onSubmit={handleSubmit} className="login-form">
                 {isSigningUp && (
-                    <div style={{ marginBottom: '10px' }}>
+                    <div className="login-form-group">
                         <Input
                             type="text"
                             placeholder="Nombre completo"
@@ -47,7 +47,7 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
                         />
                     </div>
                 )}
-                <div style={{ marginBottom: '10px' }}>
+                <div className="login-form-group">
                     <Input
                         type="email"
                         placeholder="Email"
@@ -56,7 +56,7 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
                         required
                     />
                 </div>
-                <div style={{ marginBottom: '20px' }}>
+                <div className="login-form-group">
                     <Input
                         type="password"
                         placeholder="Contraseña"
@@ -65,16 +65,18 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
                         required
                     />
                 </div>
-                <Button type="submit">
-                    {isSigningUp ? 'Registrarse' : 'Iniciar Sesión'}
-                </Button>
-                <Button 
-                    type="button" 
-                    onClick={() => setIsSigningUp(!isSigningUp)}
-                    style={{ marginLeft: '10px' }}
-                >
-                    {isSigningUp ? 'Ya tengo cuenta' : 'Crear cuenta'}
-                </Button>
+                <div className="login-buttons">
+                    <Button type="submit" style={{ flex: 1 }}>
+                        {isSigningUp ? 'Registrarse' : 'Iniciar Sesión'}
+                    </Button>
+                    <Button 
+                        type="button" 
+                        onClick={() => setIsSigningUp(!isSigningUp)}
+                        style={{ flex: 1 }}
+                    >
+                        {isSigningUp ? 'Ya tengo cuenta' : 'Crear cuenta'}
+                    </Button>
+                </div>
             </form>
         </div>
     );
